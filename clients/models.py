@@ -1,16 +1,23 @@
 from django.db import models
 
-class Clients:
+class Providers:
     name=models.CharField(default="",max_length=30,verbose_name="Nombre")
+    location=models.CharField(max_length=100,verbose_name="Ubicación")
     telephone=models.CharField(default="",max_length=12,verbose_name="Teléfono")
-    direction=models.CharField(default="",max_length=100, verbose_name="Dirección")
-    is_provider=models.BooleanField(default=False, verbose_name="Es proveedor")
-    provider=models.ForeignKey(ConvenienceStore,on_delete=models.CASCADE,verbose_name="ID proveedor")
+    descripcion=models.TextField(default="",verbose_name="Descripción")
+
     class Meta:
-        verbose_name_plural="Catálogo"
+        verbose_name_plural="Proveedores"
     def __str__(self) -> str:
-        return "%s"%(self.product)
+        return "%s"%(self.name)
 class ConvenienceStore:
+    name=models.CharField(default="",max_length=30,verbose_name="Nombre")
+    location=models.CharField(max_length=100,verbose_name="Ubicación")
+    telephone=models.CharField(default="",max_length=12,verbose_name="Teléfono")
+    descripcion=models.TextField(default="",verbose_name="Descripción")
+    class Meta:
+        verbose_name_plural="Tiendas minoristas"
+    def __str__(self) -> str:
+        return "%s"%(self.name)
     
-    location=models.CharField(max_length=100,)
 

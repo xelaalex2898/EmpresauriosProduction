@@ -1,14 +1,14 @@
 from django import forms
-from .models import Providers, ConvenienceStore 
+from .models import Clients, ConvenienceStore 
 
 
 class ProvidersForm(forms.ModelForm):
     name=forms.CharField(max_length=30,label="Nombre")
     location=forms.CharField(max_length=100,label="Ubicación")
     telephone=forms.CharField(max_length=12,label="Teléfono")
-    descripcion=forms.TextField(label="Descripción")
+    descripcion=forms.CharField(max_length=100,label="Descripción")
     class Meta:
-        model = Providers
+        model = Clients
         fields = (
             "name",
             "location",
@@ -19,7 +19,7 @@ class ConvenienceStoreForm(forms.ModelForm):
     name=forms.CharField(max_length=30,label="Nombre")
     location=forms.CharField(max_length=100,label="Ubicación")
     telephone=forms.CharField(max_length=12,label="Teléfono")
-    descripcion=forms.TextField(label="Descripción")
+    descripcion=forms.CharField(max_length=100,label="Descripción")
     class Meta:
         model = ConvenienceStore
         fields = (

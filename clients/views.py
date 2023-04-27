@@ -14,7 +14,7 @@ def ProvidersFormView(request):
             return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
     else:
         form=ProvidersForm()
-    return render(request, "CatalogueRegister.html", {'form':form})
+    return render(request, "CatalogeRegister.html", {'form':form})
 def ConvenienceStoreFormView(request):
     if request.method=="POST":
         form=ConvenienceStoreForm(request.POST)
@@ -24,5 +24,4 @@ def ConvenienceStoreFormView(request):
             return HttpResponseRedirect(reverse_lazy('ConvenienceStoreHome', args=[]))
     else:
         form=ConvenienceStoreForm()
-    return render(request, "ConvenienceStoreRegister.html",{'form': form})
-
+    return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia" })

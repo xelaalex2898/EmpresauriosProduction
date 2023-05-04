@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-from Login.models import Users
+from Login.models import Perfil
 class Clients(models.Model):
     # proveedores, vendedores, tiendas de mayoreo 
     name=models.CharField(default="",max_length=30,verbose_name="Nombre")
@@ -30,7 +30,7 @@ class notifications(models.Model):
     description=models.CharField(max_length=40,default="",verbose_name="Descripción" )
     date=models.DateField(default=date.today(),verbose_name="Fecha")
     seen=models.BooleanField(default=False,verbose_name="Visto")
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='notifications', verbose_name="Usuario")
+    user = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='notifications', verbose_name="Usuario")
 
     def __str__(self): 
         return self.title

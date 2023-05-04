@@ -11,15 +11,15 @@
     background-image: url("{%static 'image__2_-removebg-preview 1.svg'% }  ");
   }
   form{
-    display: flex;
+    display: inline;
     align-items: center;
     background-color: #d9c9d9;
-    border-radius: 50%;
+    border-radius: 20%;
     padding: 20px;
   }
   input[type="text"]{
     background-color: #8ca87c;
-    border-radius: 50%;
+    border-radius: 20%;
     padding-top: 10px;
     text-align: center;
   }
@@ -30,7 +30,7 @@
   
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form.as_p}}    
     <button type="submit">Enviar</button>
   </form>
 </div>

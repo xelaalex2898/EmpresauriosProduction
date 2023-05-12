@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+{% load static %}
+
+{%block body%}
+
+    <form class="rounded-pill py-5 pr-1 mr-2 " method="POST" id="registerForm">
+        {% csrf_token %}
+        <div class="form-group">
+            |
+            {{providerForm.name}}    
+            {{providerForm.last_name}}    
+            {{providerForm.telephone}}    
+            {{providerForm.enterprise_name}}   
+        </div>
+        <div class="form-group">
+            {{providerForm.descripcion}}   
+            {{providerForm.logo}}   
+        </div>
+    </form>
+    
+{%endblock%}

@@ -21,7 +21,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("providers/", ProvidersFormView),
     path("conveniencestore/", ConvenienceStoreFormView),
-    re_path(r'^incia-sesion/$', identificate.as_view(), name='identificate'),
-    path("", home),
+    re_path('', identificate.as_view(), name='identificate'),
     
 ]

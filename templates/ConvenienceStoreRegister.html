@@ -1,38 +1,84 @@
 {%extends "base.html"%}
+{% load static %}
 
-{%block title%}
-  {{title}}
-{%endblock%}
 {%block body%}
 
 
 <style>
-  .container{
-    background-image: url("{%static 'image__2_-removebg-preview 1.svg'% }  ");
+  #left{
+    float: left;
+    width: 66%;
+
   }
-  form{
-    display: inline;
+  #right{
+    float: right;
+    width: 34%;
+  }
+  
+  #form2{
+    float: right;
+    height: 80vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: #d9c9d9;
-    border-radius: 20%;
+    background-color: #D9C9B9;
     padding: 20px;
+    margin-left: 50%;
+    border-radius: 20px;
+    border:solid 3px #414B3B;
+  }
+  #registerForm{
+    
+    float: left;
+    height: 80vh;
+    justify-content: center;
+    display: flex;
+    padding-top: -100px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D9C9B9;
+    padding: 20px;
+    margin-right: 50%;
+    border-radius: 20px;
+    border:solid 3px #414B3B;
   }
   input[type="text"]{
-    background-color: #8ca87c;
-    border-radius: 20%;
+    background-color: #8CA87C;
     padding-top: 10px;
+    margin-bottom:10px ;
     text-align: center;
+    border: none;
   }
 </style>
 
-<div class="container">
+<div class="container" id="left">
 
   
-  <form method="POST">
+  <!-- Formulario Vendedor -->
+  <form class="rounded-pill py-5 pr-1 mr-2 " method="POST" id="registerForm">
     {% csrf_token %}
-    {{form.as_p}}    
-    <button type="submit">Enviar</button>
+    {{vendorForm.name}}    
+    {{vendorForm.last_name}}    
+    {{vendorForm.telephone}}    
+    {{vendorForm.logo}}   
+    {{vendorForm.enterprise_name}}   
+    {{vendorForm.descripcion}}   
   </form>
+  <!-- Formulario Comprador -->
+  <form class="rounded-pill py-5 pr-1 mr-2 " method="POST" id="form2">
+    {% csrf_token %}
+    {{convenienceStoreForm.name}}    
+    {{convenienceStoreForm.last_name}}    
+    {{convenienceStoreForm.telephone}}    
+    {{convenienceStoreForm.descripcion}}    
+    <button class="btn btn-primary" type="submit">Enviar</button>
+  </form>
+</div>
+
+<div class="container" id="right">
+  <img src="{% static 'backGroudForms.svg' %}" alt="">
+
 </div>
   
 

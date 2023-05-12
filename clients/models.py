@@ -1,16 +1,18 @@
 from django.db import models
 from datetime import date
+from django.core.validators import MinValueValidator
+
 from Login.models import Perfil
-class Clients(models.Model):
+class Providers(models.Model):
     # proveedores, vendedores, tiendas de mayoreo 
     name=models.CharField(default="",max_length=30,verbose_name="Nombre")
-    lastName=models.CharField(max_length=50,verbose_name="Apellidos")
+    last_name=models.CharField(max_length=50,verbose_name="Apellidos")
     telephone=models.CharField(default="",max_length=12,verbose_name="Teléfono")
-    direction=models.CharField(default="",max_length=100, verbose_name="Dirección")
     logo=models.CharField(default="",max_length=100, verbose_name="Logo")
-    enterpriseName=models.CharField(default="",max_length=100, verbose_name="Nombre de la empresa")
-    descripcion=models.CharField(max_length=100,verbose_name="Descripción")
+    enterprise_name=models.CharField(default="",max_length=100, verbose_name="Nombre de la empresa")
+    descripcion=models.CharField(max_length=200,verbose_name="Descripción")
     is_suscribed=models.BooleanField(default=False,verbose_name="Está sustrito")
+    user_id=models.ForeignKey(Perfil, on_delete=models.CASCADE,verbose_name="Id de usuario")
     #provider=models.ForeignKey(ConvenienceStore, on_delete=models.CASCADE, verbose_name="ID proveedor", null=True, blank=True)
     class Meta:
         verbose_name_plural="Catálogo"
@@ -18,10 +20,10 @@ class Clients(models.Model):
         return "%s - %s" % (self.name, self.telephone)
 class ConvenienceStore(models.Model):
     name=models.CharField(max_length=30,verbose_name="Nombre")
-    lastName=models.CharField(max_length=50,verbose_name="Apellidos")
-    location=models.CharField(max_length=100,verbose_name="Ubicación")
+    last_name=models.CharField(max_length=50,verbose_name="Apellidos")
     telephone=models.CharField(max_length=12,verbose_name="Teléfono")
-    descripcion=models.CharField(max_length=100,verbose_name="Descripción")
+    descripcion=models.CharField(max_length=200,verbose_name="Descripción")
+    user_id=models.ForeignKey(Perfil, on_delete=models.CASCADE,verbose_name="Id de usuario")
     class Meta:
         verbose_name_plural = "ConvenienceStores"
 
@@ -34,3 +36,14 @@ class notifications(models.Model):
 
     def __str__(self): 
         return self.title
+class directions(models.Model):
+    user_id=models.ForeignKey(Perfil, on_delete=models.CASCADE,verbose_name="id de usuario")
+    estate=models.CharField(max_length=20,default="",verbose_name="Estado")
+    city=models.CharField(max_length=30,default="",verbose_name="Ciudad")
+    cologne=models.CharField(max_length=30,default="",verbose_name="Colonia")
+    street=models.CharField(max_length=30,default="",verbose_name="Calle")
+    outdoor_number=models.IntegerField(validators=[MinValueValidator(0)],default=0,verbose_name="Número exterior")
+    indoor_number=models.IntegerField(validators=[MinValueValidator(0)],default=0,blank=True,null=True,verbose_name="Número interior")
+
+
+
